@@ -76,16 +76,30 @@
                 align-self: center !important;
                 border-width: 1px !important;
             }
-            #games > div, #chat > div {
+            #chat > div {
                 height: 460px !important;
                 overflow: hidden !important;
                 position: relative !important;
             }
-            .game-sub-frame, #chattable, iframe {
-                width: 142.8% !important;
-                height: 657px !important;
+            #games > div {
+                height: 340px !important; 
+                overflow: hidden !important;
+                position: relative !important;
+            }
+
+            #chattable {
+                width: 142.8% !important; 
+                height: 657px !important; 
                 transform: scale(0.7) !important; 
-                transform-origin: top left !important;
+                transform-origin: top left !important; 
+                border: none !important;
+            }
+            .game-sub-frame, #games iframe {
+                width: 142.8% !important; 
+                height: 485px !important; 
+                transform: scale(0.7) !important; 
+                transform-origin: top left !important; 
+                margin-top: -10px !important;
                 border: none !important;
             }
             #chess iframe {
