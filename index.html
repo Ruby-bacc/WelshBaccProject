@@ -269,19 +269,24 @@ if (nameExists) {
         updateLeaderboardView();
     };
     @media (max-width: 768px) {
+    
+    
     body.p-4 {
-      padding: 4px !important;
+      padding: 6px !important;
     }
+
+    
     .container {
-      max-width: 98% !important;
-      width: 98% !important;
-      padding: 10px !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      padding: 8px !important;
     }
-    iframe, .chat-container, .game-container, [class*="chat"], [class*="game"] {
+
+    iframe, .chat-container, .game-container {
       width: 100% !important;
       max-width: 100% !important;
-      height: auto !important;
-      min-height: 350px !important;
+      height: 450px !important;
+      border: none !important;
     }
   }
 </script>
