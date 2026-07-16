@@ -268,6 +268,22 @@ if (nameExists) {
     window.onload = function() {
         updateLeaderboardView();
     };
+    @media (max-width: 768px) {
+    body.p-4 {
+      padding: 4px !important;
+    }
+    .container {
+      max-width: 98% !important;
+      width: 98% !important;
+      padding: 10px !important;
+    }
+    iframe, .chat-container, .game-container, [class*="chat"], [class*="game"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 350px !important;
+    }
+  }
 </script>
 </body>
 </html>
