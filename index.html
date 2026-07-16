@@ -1,0 +1,273 @@
+<!DOCTYPE html> 
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Welsh Bacc Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<style>
+        .frame-container-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+        .frame-content {
+            grid-column: 1;
+            grid-row: 1;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+        }
+        .frame-content.active-frame {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0px);
+        }
+        .game-sub-frame {
+            display: none;
+            width: 100%;
+            height: 550px;
+        }
+        .game-sub-frame.active-sub-frame {
+            display: block;
+        }
+        .fact-card {
+            background-color: #ffffff;
+            color: #333333;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 850px;
+            margin: 0 auto;
+            min-height: 180px;
+        }
+        .fact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+<body class="p-4" style="background-color: #ffb18f;">
+    <div class="container p-4 rounded shadow" style="background-color: #ff2828; min-height: 100%; display: flow-root;">
+        <nav style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
+            <button style="background-color: #ffb18f; color: #ffffff; font-weight: bold; border: none; padding: 10px 10px; font-size: 16px; border-radius: 5px; cursor: pointer;" class="nav-link  active" onclick="showFrame('home')">HOME</button>
+            <button style="background-color: #ffb18f; color: #ffffff; font-weight: bold; border: none; padding: 10px 10px; font-size: 16px; border-radius: 5px; cursor: pointer;" class="nav-link" onclick="showFrame('facts')">EDUCATIONAL FACTS</button>
+            <button style="background-color: #ffb18f; color: #ffffff; font-weight: bold; border: none; padding: 10px 10px; font-size: 16px; border-radius: 5px; cursor: pointer;" class="nav-link" onclick="showFrame('games')">GAMES</button>
+            <button style="background-color: #ffb18f; color: #ffffff; font-weight: bold; border: none; padding: 10px 10px; font-size: 16px; border-radius: 5px; cursor: pointer;" class="nav-link" onclick="showFrame('chat')">CHAT</button>
+        </nav>
+        <div class="frame-container-grid">
+            <div id="home" class="frame-content active-frame">
+                <h1 class="text-white" style="font-size: 50px; text-align: center; margin-top: 75px";> Welcome to Student Room</h1>
+                <p class="text-white" style="font-size: 20px; text-align: center; margin-top: 150px;">This website is for individuals to join together to a safe space to meet new people, play competetive games and learn!</p>
+                <div class="support-directory" style="margin-top: 250px; padding: 20px; border-top: 2px solid #ccc; font-family: sans-serif;">
+                    <h2 style="margin-bottom: 20px;">Local Support Resources</h2>
+                    <div class="support-section" style="margin-bottom: 25px;">
+                        <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Youth Centers</h3>
+                        <div class="support-item" style="margin-bottom: 15px;">
+                            <p><strong>Young Wrexham</strong> - A digital hub dedicated to young individuals who need guidance with a range of different issues which includes poverty. They can be contacted via email and they can guide adolescents to the right places for support.</p>
+                            <a href="https://youngwrexham.co.uk/" target="_blank" style="color: #0066cc; text-decoration: underline;">Young Wrexham | Local services, articles and what's on for you in Wrexham!</a>
+                        </div>
+                        <div class="support-item" style="margin-bottom: 15px;">
+                            <p><strong>Wrexham Youth</strong> - Youth center that prevents homelessness in young people, ensuring they have shelter. Their website allows individuals to donate or buy items from their store, the money funds the youth centers so they can continue running services.</p>
+                            <a href="https://search.sheltercymru.org.uk/?yp_services=young-wrexham" target="_blank" style="color: #0066cc; text-decoration: underline;">Wrexham Youth – Shelter Cymru</a>
+                        </div>
+                    </div>
+                    <div class="support-section" style="margin-bottom: 25px;">
+                        <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Food Bank</h3>
+                        <div class="support-item" style="margin-bottom: 15px;">
+                            <p><strong>Wrexham Foodbank</strong> - Food bank that provides emergency food, cleaning supplies, pet food and toiletries to those financially struggling.</p>
+                            <a href="https://wrexham.foodbank.org.uk/" target="_blank" style="color: #0066cc; text-decoration: underline;">Wrexham Foodbank | Helping Local People in Crisis</a>
+                        </div>
+                        <div class="support-item" style="margin-bottom: 15px;">
+                            <p><strong>Welsh Government School Essentials Grant</strong> - Low income families can apply for this grant allowing them to be able to afford school uniform and essentials for their children.</p>
+                            <a href="https://www.wrexham.gov.uk/service/school-essentials-grant" target="_blank" style="color: #0066cc; text-decoration: underline;">School Essentials Grant | Wrexham County Borough Council</a>
+                        </div>
+                    </div>
+                    <div class="support-section" style="margin-bottom: 25px;">
+                        <h3 style="color: #333; border-bottom: 1px solid #ddd; padding-bottom: 5px;">Clothing Bank</h3>
+                        <div class="support-item" style="margin-bottom: 15px;">
+                            <p><strong>Baby Basics Wrexham</strong> - Supplies free baby clothing, moses baskets and necessities for parenting a child allowing vulnerable parents to take care of their child.</p>
+                            <a href="https://baby-basics.org.uk/centre/wrexham" target="_blank" style="color: #0066cc; text-decoration: underline;">Wrexham – Baby Basics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="facts" class="frame-content"">
+                <h1 class="text-white" style="text-align: center;">Educational Facts</h1>
+                <div class="row g-4 justify-content-center m-0">
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>How Many Adolescents In The Uk Are In Poverty?</h3>
+                            <p>31% of adolescents throughout the UK are living in poverty as of 2026.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>The Cost Of School</h3>
+                            <p>The cost of school necessities such as uniform, technology and trips create financial preasure on low income families and often results to adolescents in these situations to miss opportunities and become more isolated than their peers.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>Mental Health Impact Of Poverty</h3>
+                            <p>Living with financial stress causes high levels of anxiety and worry for young people, impacting both their mental health and focus in class.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>Housing Quality With Poverty</h3>
+                            <p>Living in cold, damp, or overcrowded housing is linked to higher rates of asthma and illness, causing students to miss more days of school.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>Transport Barriers In Poverty</h3>
+                            <p>Limited or expensive public transport in local areas makes it difficult for adolescents in poverty to access youth services, job interviews, or after school clubs.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 cold-md-6">
+                        <div class="fact-card">
+                            <h3>Rise In (Adolescent) Poverty</h3>
+                            <p>The amount of individuals, including adolescents, who are in poverty is still increasing despite small acts such as food banks and grants.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="games" class="frame-content"">
+                <h1 class="text-white" style="text-align: center;">Games</h1>
+                <p class="text-white" style="text-align: center; margin-bottom: 25px;">Choose your game! Play 1V1 against friends now.</p>
+                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                    <button style="background-color: #ffffff; color:#ff2828; font-weight: bold; border: 2px solid #2b2b2b; padding: 6px 14px; border-radius: 4px; cursor: pointer;" onclick="switchGame('tictactoe')">TIC-TAC-TOE</button>
+                    <button style="background-color: #ffffff; color:#ff2828; font-weight: bold; border: 2px solid #2b2b2b; padding: 6px 14px; border-radius: 4px; cursor: pointer;" onclick="switchGame('connect4')">CONNECT FOUR</button>
+                    <button style="background-color: #ffffff; color:#ff2828; font-weight: bold; border: 2px solid #2b2b2b; padding: 6px 14px; border-radius: 4px; cursor: pointer;" onclick="switchGame('chess')">SANDBOX CHESS</button>
+                    <button style="background-color: #ffffff; color:#ff2828; font-weight: bold; border: 2px solid #2b2b2b; padding: 6px 14px; border-radius: 4px; cursor: pointer;" onclick="switchGame('leaderboard')">LEADERBOARD</button>
+                </div>
+                <div style="width: 100%; max-width: 950px; margin: 0 auto; height: 550px; background: #ffffff; border: 4px solid #2b2b2b; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.3);">
+                    <iframe id="tictactoe" class="game-sub-frame active-sub-frame" src="https://papergames.io/en/tic-tac-toe" width="100%" height="100%" style="width: 100%; height: 100%; border: none;" frameborder="0"></iframe>
+                    <iframe id="connect4" class="game-sub-frame" src="https://papergames.io/en/connect4" width="100%" height="100%" style="width: 100%; height: 100%; border: none;" frameborder="0"></iframe>
+                <div id="chess" class="game-sub-frame" style="width: 100%; height: 100%; display: none; align-items: center; justify-content: center; overflow: hidden; background: #ffffff;">
+                    <iframe src="https://hxim.github.io/simplechessboard/popup/simplechessboard.html" 
+                                frameborder="0"
+                                style="width: 750px; height: 100%; max-height: 520px; display: block; border: none; margin: 0 auto;">
+                    </iframe>
+                </div>
+                    <div id="leaderboard" class="game-sub-frame p-4" style="color: #333333; background: #ffffff; text-align: left; overflow-y: auto;">
+                        <h2 style="font-weight: bold; text-align: center; margin-bottom: 20px;">Lobby Leaderboard</h2>
+                        <p style="text-align: center; color: gray; margin-bottom: 20px;">Register a display name for your points.</p>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6; margin-bottom: 25px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                            <input type="text" id="reg-name" placeholder="Enter Custom Player Name" style="padding: 8px; border: 1px solid #ced4da; border-radius: 4px; width: 40%;">
+                            <button onclick="createNewPlayer()" style="background-color: #2b2b2b; color: white; border: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; cursor: pointer;">Register Name</button>
+                            <span style="color: #ced4da; margin: 0 5px;">|</span>
+                            <button onclick="simulateWin()" style="background-color: #ff2828; color: white; border: none; font-weight: bold; padding: 8px 15px; border-radius: 4px; cursor: pointer;">+ Add Win (100 pts)</button>
+                        </div>
+                        <table class="table table-striped table-bordered text-center">
+                            <thead class="table-dark">
+                                <tr><th>Rank</th><th>Player Name</th><th>Points</th><th>Games Won</th></tr>
+                            </thead>
+                            <tbody id="leaderboard-data">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="chat" class="frame-content">
+                <h1 class="text-white" style="text-align: center;">Student Chat System</h1>
+                <p class="text-white" style="text-align: center; margin-bottom: 25px;"> Welcome to the student chat! Chats are monitored so please chat respectfully.</p>
+                <div style="width: 100%; max-width: 900px; margin: 0 auto; height: 600px; background: #ffffff; border: 4px solid #2b2b2b; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 16px rgba(0,0,0,0.3);">
+                    <iframe src="https://iframe.chat/embed?chat=StudentChatSystem" id="chattable"
+                            width="100%"
+                            height="100%"
+                            style="width: 100%; height: 100%; border: none;"
+                            frameborder="0">
+                    </iframe>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function showFrame(frameId) {
+        document.querySelectorAll('.frame-content').forEach(frame => {
+            frame.classList.remove('active-frame');
+        });
+        document.getElementById(frameId).classList.add('active-frame');
+    }
+    function switchGame(gameId) {
+        document.querySelectorAll('.game-sub-frame').forEach(subFrame => {
+            subFrame.classList.remove('active-sub-frame');
+            subFrame.style.display = 'none'; 
+        });
+        
+        const target = document.getElementById(gameId);
+        target.classList.add('active-sub-frame');
+
+        if (gameId === 'chess') {
+            target.style.display = 'flex';
+        } else {
+            target.style.display = 'block';
+        }
+    }
+     let players = JSON.parse(localStorage.getItem('baccLeaderboard')) || [
+        { name: "Sample_Opponent", points: 200, wins: 2 }
+    ];
+    let activeUser = "";
+    function updateLeaderboardView() {
+        const tableBody = document.getElementById('leaderboard-data');
+        if (!tableBody) return;
+        players.sort((a, b) => b.points - a.points);
+        tableBody.innerHTML = "";
+        players.forEach((player, index) => {
+            const row = document.createElement('tr')
+            if (player.name === activeUser) {
+                row.style.backgroundColor = "#fff3cd";
+            }
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="font-weight: bold;">${player.name}</td>
+                <td class="text-success">${player.points}</td>
+                <td>${player.wins}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+    function createNewPlayer() {
+        const inputName = document.getElementById('reg-name').value.trim();
+        if (inputName === "") {
+            alert("Please type a name first!");
+            return;
+        }
+        let nameExists = players.some(p => p.name.toLowerCase() === inputName.toLowerCase());
+if (nameExists) {
+    alert("Error: This Player Name is already taken. Please choose a unique name!");
+            return;
+        }
+        activeUser = inputName;
+        players.push({ name: inputName, points: 0, wins: 0 });
+        localStorage.setItem('baccLeaderboard', JSON.stringify(players));
+        updateLeaderboardView();
+        alert(`Success! "${inputName}" is registered as the active user.`);
+        document.getElementById('reg-name').value = "";
+    }
+    function simulateWin() {
+        if (activeUser === "") {
+            alert("Please register a unique player name first before scoring points!");
+            return;
+        }
+        let currentPlayer = players.find(p => p.name === activeUser);
+        if (currentPlayer) {
+            currentPlayer.points += 100;
+            currentPlayer.wins += 1;
+            localStorage.setItem('baccLeaderboard', JSON.stringify(players));
+            updateLeaderboardView();
+        }
+    }
+    window.onload = function() {
+        updateLeaderboardView();
+    };
+</script>
+</body>
+</html>
