@@ -50,26 +50,54 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
         }
         @media (max-width: 768px) {
-    
-    
-    body.p-4 {
-      padding: 6px !important;
-    }
-
-    
-    .container {
-      max-width: 100% !important;
-      width: 100% !important;
-      padding: 8px !important;
-    }
-
-    iframe, .chat-container, .game-container {
-      width: 100% !important;
-      max-width: 100% !important;
-      height: 450px !important;
-      border: none !important;
-    }
-  }
+            body.p-4 {
+                padding: 6px !important;
+            }
+            .container {
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 10px !important;
+            }
+            nav {
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+                margin-bottom: 25px !important;
+            }
+            nav button {
+                font-size: 13px !important;
+                padding: 8px 10px !important;
+                flex: 1 1 43% !important;
+            }
+            #games > div, #chat > div {
+                height: 460px !important;
+                overflow: hidden !important;
+                position: relative !important;
+            }
+            .game-sub-frame, #chattable, iframe {
+                width: 142.8% !important;
+                height: 657px !important;
+                transform: scale(0.7) !important; 
+                transform-origin: top left !important;
+                border: none !important;
+            }
+            #chess iframe {
+                width: 142.8% !important;
+                height: 657px !important;
+                max-height: none !important;
+            }
+            #home h1 {
+                font-size: 28px !important;
+                margin-top: 25px !important;
+            }
+            #home p {
+                font-size: 16px !important;
+                margin-top: 50px !important;
+            }
+            .support-directory {
+                margin-top: 100px !important;
+                padding: 10px !important;
+            }
+        }
     </style>
 </head>
 <body class="p-4" style="background-color: #ffb18f;">
