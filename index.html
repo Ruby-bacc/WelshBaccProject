@@ -85,6 +85,8 @@
                 height: 340px !important; 
                 overflow: hidden !important;
                 position: relative !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
 
             #chattable {
@@ -99,14 +101,21 @@
                 height: 520px !important; 
                 transform: scale(0.7) !important; 
                 transform-origin: top left !important; 
-                margin-top: -50px !important;
+                margin-top: 0px !important;
                 border: none !important;
             }
+            #chess {
+                display: none; 
+            }
+            #chess.active-sub-frame {
+                display: block !important;
+            }
             #chess iframe {
-                width: 100% !important;
-                height: 100% !important;
-                transform: none !important;
-                max-height: none !important;
+                width: 142.8% !important;
+                height: 142.8% !important;
+                transform: scale(0.7) !important;
+                transform-origin: top left !important;
+                margin-top: 0px !important;
             }
             #home h1 {
                 font-size: 28px !important;
