@@ -82,7 +82,7 @@
                 position: relative !important;
             }
             #games > div {
-                height: 400px !important; 
+                height: 480px !important; 
                 overflow: hidden !important;
                 position: relative !important;
                 display: flex !important;
@@ -96,26 +96,31 @@
                 transform-origin: top left !important; 
                 border: none !important;
             }
-            #tictactoe iframe, #connect4 iframe {
-                width: 142.8% !important; 
-                height: 142.8% !important;
-                transform: scale(0.7) !important; 
-                transform-origin: top left !important; 
+            iframe.game-sub-frame {
+                width: 100% !important; 
+                height: 100% !important;
+                transform: none !important; 
                 border: none !important;
+            }
+            #leaderboard {
+                transform: scale(0.95) !important;
+                transform-origin: top center !important;
             }
             #chess {
                 display: none;
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
             }
             #chess.active-sub-frame {
                 display: block !important;
             }
             #chess iframe {
-                width: 100% !important;
-                height: 100% !important;
-                max-width: none !important;
-                max-height: none !important;
-                transform: scale(1.1) !important; 
+                width: 500px !important; 
+                height: 500px !important;
+                transform: scale(0.75) !important; 
                 transform-origin: top left !important;
+                border: none !important;
             }
             #home h1 {
                 font-size: 28px !important;
