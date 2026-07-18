@@ -82,7 +82,7 @@
                 position: relative !important;
             }
             #games > div {
-                height: 340px !important; 
+                height: 400px !important; 
                 overflow: hidden !important;
                 position: relative !important;
                 display: flex !important;
@@ -98,24 +98,26 @@
             }
             .game-sub-frame, #games iframe {
                 width: 142.8% !important; 
-                height: 520px !important; 
+                height: 570px !important;
                 transform: scale(0.7) !important; 
                 transform-origin: top left !important; 
                 margin-top: 0px !important;
                 border: none !important;
             }
             #chess {
-                display: none; 
+                display: none;
             }
             #chess.active-sub-frame {
-                display: block !important;
+                display: flex !important;
             }
             #chess iframe {
-                width: 142.8% !important;
-                height: 142.8% !important;
-                transform: scale(0.7) !important;
-                transform-origin: top left !important;
-                margin-top: 0px !important;
+                width: 100% !important; 
+                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                transform: scale(1.4) !important; 
+                transform-origin: center center !important;
+                margin: 0 auto !important;
             }
             #home h1 {
                 font-size: 28px !important;
