@@ -5,6 +5,8 @@
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
     <title>My Welsh Bacc Project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <style>
         .frame-container-grid {
             display: grid;
@@ -298,17 +300,33 @@
             target.style.display = 'block';
         }
     }
-     let players = JSON.parse(localStorage.getItem('baccLeaderboard')) || [
-        { name: "Sample_Opponent", points: 200, wins: 2 }
-    ];
+    const firebaseConfig = {
+        apiKey: "AIzaSyAiZyWvQEe8yid3C25YOnGIAECXEUalxBM",
+        authDomain: "welshbaccruby.firebaseapp.com",
+        databaseURL: "https://welshbaccruby-default-rtdb.firebaseio.com",
+        projectId: "welshbaccruby",
+        storageBucket: "welshbaccruby.firebasestorage.app",
+        messagingSenderId: "929568608095",
+        appId: "1:929568608095:web:c25d745e41f5b8c96fb0ea",
+        measurementId: "G-09ZB716JJ7"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    let players = [];
     let activeUser = localStorage.getItem('baccActiveUser') || "";
+    db.ref('leaderboard').on('value', (snapshot) => {
+        const data = snapshot.val();
+        players = data ? Object.values(data) : [];
+        updateLeaderboardView();
+    });
     function updateLeaderboardView() {
         const tableBody = document.getElementById('leaderboard-data');
         if (!tableBody) return;
         players.sort((a, b) => b.points - a.points);
         tableBody.innerHTML = "";
         players.forEach((player, index) => {
-            const row = document.createElement('tr')
+            const row = document.createElement('tr');
             if (player.name === activeUser) {
                 row.style.backgroundColor = "#fff3cd";
             }
@@ -328,17 +346,35 @@
             return;
         }
         let nameExists = players.some(p => p.name.toLowerCase() === inputName.toLowerCase());
-if (nameExists) {
-    alert("Error: This Player Name is already taken. Please choose a unique name!");
+        if (nameExists) {
+            alert("Error: This Player Name is already taken. Please choose a unique name!");
             return;
         }
         activeUser = inputName;
-        players.push({ name: inputName, points: 0, wins: 0 });
-        localStorage.setItem('baccLeaderboard', JSON.stringify(players));
         localStorage.setItem('baccActiveUser', inputName);
-        updateLeaderboardView();
+
+        db.ref('leaderboard/' + inputName).set({
+            name: inputName,
+            points: 0,
+            wins: 0
+        });
+
         alert(`Success! "${inputName}" is registered as the active user.`);
         document.getElementById('reg-name').value = "";
+    }
+
+    function simulateWin() {
+        if (activeUser === "") {
+            alert("Please register a unique player name first before scoring points!");
+            return;
+        }
+        let currentPlayer = players.find(p => p.name === activeUser);
+        if (currentPlayer) {
+            db.ref('leaderboard/' + activeUser).update({
+                points: currentPlayer.points + 100,
+                wins: currentPlayer.wins + 1
+            });
+        }
     }
     function simulateWin() {
         if (activeUser === "") {
@@ -347,23 +383,12 @@ if (nameExists) {
         }
         let currentPlayer = players.find(p => p.name === activeUser);
         if (currentPlayer) {
-            currentPlayer.points += 100;
-            currentPlayer.wins += 1;
-            localStorage.setItem('baccLeaderboard', JSON.stringify(players));
-            updateLeaderboardView();
+            db.ref('leaderboard/' + activeUser).update({
+                points: currentPlayer.points + 100,
+                wins: currentPlayer.wins + 1
+            });
         }
     }
-    window.onload = function() {
-        updateLeaderboardView();
-    };
-
-    window.addEventListener('storage', function(e) {
-        if (e.key === 'baccLeaderboard' || e.key === 'baccActiveUser') {
-            players = JSON.parse(localStorage.getItem('baccLeaderboard')) || [];
-            activeUser = localStorage.getItem('baccActiveUser') || "";
-            updateLeaderboardView();
-        }
-    });
 </script>
 </body>
 </html>
