@@ -376,19 +376,6 @@
             });
         }
     }
-    function simulateWin() {
-        if (activeUser === "") {
-            alert("Please register a unique player name first before scoring points!");
-            return;
-        }
-        let currentPlayer = players.find(p => p.name === activeUser);
-        if (currentPlayer) {
-            db.ref('leaderboard/' + activeUser).update({
-                points: currentPlayer.points + 100,
-                wins: currentPlayer.wins + 1
-            });
-        }
-    }
 </script>
 </body>
 </html>
