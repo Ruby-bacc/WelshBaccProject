@@ -301,7 +301,7 @@
      let players = JSON.parse(localStorage.getItem('baccLeaderboard')) || [
         { name: "Sample_Opponent", points: 200, wins: 2 }
     ];
-    let activeUser = "";
+    let activeUser = localStorage.getItem('baccActiveUser') || "";
     function updateLeaderboardView() {
         const tableBody = document.getElementById('leaderboard-data');
         if (!tableBody) return;
@@ -335,6 +335,7 @@ if (nameExists) {
         activeUser = inputName;
         players.push({ name: inputName, points: 0, wins: 0 });
         localStorage.setItem('baccLeaderboard', JSON.stringify(players));
+        localStorage.setItem('baccActiveUser', inputName);
         updateLeaderboardView();
         alert(`Success! "${inputName}" is registered as the active user.`);
         document.getElementById('reg-name').value = "";
@@ -355,6 +356,14 @@ if (nameExists) {
     window.onload = function() {
         updateLeaderboardView();
     };
+
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'baccLeaderboard' || e.key === 'baccActiveUser') {
+            players = JSON.parse(localStorage.getItem('baccLeaderboard')) || [];
+            activeUser = localStorage.getItem('baccActiveUser') || "";
+            updateLeaderboardView();
+        }
+    });
 </script>
 </body>
 </html>
